@@ -10,9 +10,16 @@ header {
     color: rgb(188, 188, 188);
     padding: 1em;
     margin-right: 0;
-    padding-left: 9em;
+    padding-left: 10em;
+    padding-top: 10px;
     position: relative;
     z-index: 1; /* Збільшення z-index для хедера */
+
+}
+#days,
+#freeDelivery{
+    font-size: 0.8em;
+    margin-top: 1.4em;
 }
 
 .header-section {
@@ -36,6 +43,9 @@ header {
     border-bottom: 1px solid rgb(188, 188, 188);
     padding: 0;
     margin-bottom: 10px;
+    font-size: 1.3em;
+    padding-bottom: 0;
+
    
 }
 
@@ -49,13 +59,14 @@ header {
     background-image: linear-gradient(rgb(235, 185, 105), rgb(241, 149, 0));
     font-weight: bold;
     color: white;
-    padding: 0;
+    padding: 3px;
     font-size: 0.8em;
     height: 3.5em;
     width: 8em;
     border: 0;
     border-radius: 0.4em;
     margin-bottom: 0;
+
     transition: background-image 0.3s ease;
     
 }
@@ -64,7 +75,9 @@ header {
     background-image: linear-gradient(rgb(252, 197, 107), rgb(250, 187, 87));
     cursor: pointer;
 }
-
+#phoneNumber{
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+}
 header p {
     padding: 0;
     cursor: pointer;
@@ -107,8 +120,6 @@ header p {
     text-align: left;
    
 }
-
-/* Решта вашого CSS коду залишається незмінним */
 
 
 .pizzaContentAll {
@@ -205,4 +216,16 @@ header p {
         height: 8em; /* Adjust height for smaller screens */
      
     }
+}
+footer{
+    background-image: linear-gradient(rgb(232, 230, 230), rgb(195, 190, 190), rgb(141, 139, 139));
+    height: 5em;
+    display: flex;
+    text-align: center;
+    text-indent: 3em;
+    justify-content: center;
+    color: rgb(68, 67, 67);
+
+    padding: 5em;
+
 }
