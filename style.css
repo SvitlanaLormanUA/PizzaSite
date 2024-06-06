@@ -6,15 +6,16 @@ body {
 }
 
 header {
-    background: linear-gradient(to right, rgb(41, 41, 41), rgb(21, 21, 21));
+    background-color: rgba(42, 36, 36, 0.8);
+    
     color: rgb(188, 188, 188);
     padding: 1em;
     margin-right: 0;
     padding-left: 10em;
     padding-top: 10px;
-    position: relative;
+    position: sticky;
     z-index: 1; /* Збільшення z-index для хедера */
-
+    position: fixed;
 }
 #days,
 #freeDelivery{
@@ -90,28 +91,42 @@ header p {
     padding: 0.2em 0.7em;
     font-weight: bold;
     cursor: pointer;
-    height: 7em;
+    height: 5em;
     width: 5em;
-    position: absolute;
+  
     margin-left: 1em;
     padding-top: 5em;
     z-index: 2;
-}
-
-#triangle {
-    width: 0;
-    height: 0;
-    border-left: 80px solid transparent;
-    border-right: 88px solid transparent;
-    border-bottom: 40px solid rgb(254, 249, 244);
-    position: absolute;
-    bottom: -2px;
-    left: 52%; 
-    transform: translateX(-50%);
-    cursor:auto;
+    position: fixed;
+   
    
 }
 
+
+
+
+.triangle1 {
+    width: 0;
+    height: 0;
+    border-left: 102.5px solid transparent;
+    border-right: 0px solid transparent;
+    bottom:-1em; /* Align the bottom edge with the badge */
+    border-top: 20px solid orange;
+    position: absolute; /* Position the triangle inside the badge */
+    left: 0; /* Adjust the left position as needed */
+}
+
+
+.triangle2 {
+    width: 0;
+    height: 0;
+    border-right: 102.5px solid transparent; /* Create the left side of the triangle */
+    border-left: 0px solid transparent;
+    bottom: -1em; /* Align the bottom edge with the badge */
+    border-top: 20px solid orange;
+    position: absolute; /* Position the triangle inside the badge */
+    right: 0; /* Adjust the right position as needed */
+}
 
 #bottomHeader {
     font-size: 1.2em;
@@ -181,13 +196,15 @@ header p {
 
 .badge {
     top: 3em;
-    position: relative;
+   
+    position:relative;
     display: inline;
     margin: 5px;
+
     padding: 5px 10px;
     color: white;
     border-radius: 5px;
-    z-index: 1;
+    z-index: 100;
     height: 2em;
     text-align: center;
     justify-content: center;
@@ -199,6 +216,7 @@ header p {
     background-color: rgb(245, 52, 52);
     width: 3em;
     left: 27em;
+
 }
 
 .badge-popular {
@@ -213,7 +231,7 @@ header p {
 }
 @media only screen and (max-width: 768px) {
     #PizzaKma {
-        height: 10em; /* Adjust height for smaller screens */
+        height: 6em; /* Adjust height for smaller screens */
      
     }
 }
