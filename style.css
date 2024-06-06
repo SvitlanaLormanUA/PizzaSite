@@ -94,7 +94,7 @@ header p {
     width: 5em;
     position: absolute;
     margin-left: 1em;
-    padding-top: 3em;
+    padding-top: 5em;
     z-index: 2;
 }
 
@@ -213,7 +213,7 @@ header p {
 }
 @media only screen and (max-width: 768px) {
     #PizzaKma {
-        height: 8em; /* Adjust height for smaller screens */
+        height: 10em; /* Adjust height for smaller screens */
      
     }
 }
