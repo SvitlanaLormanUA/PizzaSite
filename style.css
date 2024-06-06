@@ -1,34 +1,121 @@
-
-@media screen and (min-width: 1024px) {
-    .pizzaContentAll {
-        height: auto; /* Змінено на автоматичну висоту */
-    }
-
-    .badge {
-        top: 1em; 
-    }
+body {
+    background-color: rgb(254, 249, 244);
+    font-family: 'Arial', Helvetica;
+    padding: 0;
+    margin: 0;
 }
 
-
-.body {
-    font-family: Arial, Helvetica, sans-serif;
-    padding: 2em;
+header {
+    background: linear-gradient(to right, rgb(41, 41, 41), rgb(21, 21, 21));
+    color: rgb(188, 188, 188);
+    padding: 1em;
+    margin-right: 0;
+    padding-left: 9em;
+    position: relative;
+    z-index: 1; /* Збільшення z-index для хедера */
 }
+
+.header-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+#headerBadge {
+    display: flex;
+    position: relative;
+    z-index: 2; /* Збільшення z-index для "PizzaKma" */
+}
+
+#upperHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1em;
+    border-bottom: 1px solid rgb(188, 188, 188);
+    padding: 0;
+    margin-bottom: 10px;
+   
+}
+
+#upperHeader div {
+    display: flex;
+    justify-content: space-between;
+    gap: 1em;
+}
+
+#enterButton {
+    background-image: linear-gradient(rgb(235, 185, 105), rgb(241, 149, 0));
+    font-weight: bold;
+    color: white;
+    padding: 0;
+    font-size: 0.8em;
+    height: 3em;
+    width: 8em;
+    border: 0;
+    border-radius: 0.4em;
+    cursor: pointer;
+    transition: background-image 0.3s ease;
+}
+
+header p {
+    padding: 0;
+    cursor: pointer;
+    font-weight: 300; /* Lighter font weight */
+}
+
+#PizzaKma {
+    background-color: rgb(251, 154, 35);
+    border: 2px solid rgb(255, 132, 0);
+    color: white;
+    text-align: center;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    height: 5em; /* Збільшення висоти */
+    width: 5em; /* Збільшення ширини */
+    position: absolute;
+    margin-left: 1em;
+    padding-top: 3em;
+    z-index: 2; /* Збільшення z-index для перекриття */
+}
+
+#enterButton:hover {
+    font-weight: bold;
+    background-image: linear-gradient(rgb(252, 197, 107), rgb(250, 187, 87));
+}
+
+#bottomHeader {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+    text-align: left;
+   
+}
+
+/* Решта вашого CSS коду залишається незмінним */
+
 
 .pizzaContentAll {
+    background-color: rgb(255, 255, 255);
     border: 0.2em solid #ddd;
-    margin: 1em;
+    margin: 2em;
     margin-top: 2em;
     border-radius: 0.5em;
     display: flex;
     flex-direction: column;
     align-items: left; 
-    width: 25rem; 
-    height: 50em; 
+    width: auto; 
+    height: 65em; 
     overflow: hidden; 
     position: relative;
-}
 
+}
+.textContent {
+    padding-bottom: 1em;
+}
 .pizza-img {
     max-width: 100%;
     height: auto;
@@ -39,6 +126,7 @@
     flex-wrap: wrap;
     justify-content: center;  
     margin: 1em;
+    
 }
 
 .textContent {
@@ -50,7 +138,7 @@
 
 .pizzaTitleClass {
     font-weight: bold;
-    font-size: 1.5em; /* Adjusted for better fit */
+    font-size: 1.5em;
     color: rgb(255, 132, 0);
     margin-left: 0.6em;
     margin-top: 1em;
@@ -79,20 +167,29 @@
     height: 2em;
     text-align: center;
     justify-content: center;
+    font-style: bold;
+    font-weight: 100;
 }
 
 .badge-new {
-    background-color: green;
+    background-color: rgb(245, 52, 52);
     width: 3em;
-    left: 24em;
+    left: 27em;
 }
 
 .badge-popular {
-    background-color: blue;
+    background-color: rgb(17, 144, 17);
     width: 5em;
-    left: 22em;
+    left: 24em;
+    font-style: bold;
 }
+
 .specialPizza {
     visibility: hidden;
-
+}
+@media only screen and (max-width: 768px) {
+    #PizzaKma {
+        height: 7em; /* Adjust height for smaller screens */
+     
+    }
 }

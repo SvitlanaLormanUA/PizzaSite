@@ -170,22 +170,38 @@ document.addEventListener("DOMContentLoaded", (event) => {
             }
         }
     ];
-    
     const pizzaContainer = document.querySelector('#pizza-container');
 
     pizza_info.forEach(pizza => {
         const pizzaDiv = document.createElement('div');
-        const badgeNewDiv = document.createElement('div');
-        const badgePopularDiv = document.createElement('div');
+
         pizzaDiv.className = 'pizza';
         const textContentClass = 'textContent';
         const pizzaHeaderClass = 'pizzaTypeName';
         const pizzaTitleClass = 'pizzaTitleClass';
-    
+        const buyText ='Купити';
+
         const badgeNew = pizza.is_new ? `<p class="badge badge-new">Нова</p>` : '';
         const popularBadge = pizza.is_popular ? `<p class="badge badge-popular ${pizza.id == 3 ? 'specialPizza' : ''}">Популярна</p>` : '';
 
-    
+        const smallSize = pizza.small_size ? `
+            <div  id="#smallSize">
+                <p>Small Size:</p>
+                <p> ${pizza.small_size.weight}g</p>
+                <p> ${pizza.small_size.size}cm</p>
+                <p> ${pizza.small_size.price} UAH</p>
+                <button> ${buyText} </button>
+            </div>` : '';
+
+        const bigSize = pizza.big_size ? `
+            <div id="bigSize">
+                <p>Big Size:</p>
+                <p>W ${pizza.big_size.weight}g</p>
+                <p>${pizza.big_size.size}cm</p>
+                <p>${pizza.big_size.price} UAH</p>
+                <button> ${buyText}</button>
+            </div>` : '';
+
         const pizzaContent = `
             ${badgeNew}
             ${popularBadge}
@@ -201,11 +217,15 @@ document.addEventListener("DOMContentLoaded", (event) => {
                         ${pizza.content.pineapple ? `<p> ${pizza.content.pineapple.join(', ')}</p>` : ''}
                         ${pizza.content.additional ? `<p> ${pizza.content.additional.join(', ')}</p>` : ''}
                     </section>
+
+                    <section class="size">
+                    ${smallSize}
+                    ${bigSize}
+                    </section>
                 </section>
             </div>`;
-    
+
         pizzaDiv.innerHTML = pizzaContent;
         pizzaContainer.appendChild(pizzaDiv);
     });
-    
 });
