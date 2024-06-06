@@ -1,9 +1,22 @@
+
+@media screen and (min-width: 1024px) {
+    .pizzaContentAll {
+        height: auto; /* Змінено на автоматичну висоту */
+    }
+
+    .badge {
+        top: 1em; 
+    }
+}
+
+
 .body {
     font-family: Arial, Helvetica, sans-serif;
-    padding: 3em;
+    padding: 2em;
 }
-.pizza {
-    border: 1px solid #ddd;
+
+.pizzaContentAll {
+    border: 0.2em solid #ddd;
     margin: 1em;
     margin-top: 2em;
     border-radius: 0.5em;
@@ -11,8 +24,9 @@
     flex-direction: column;
     align-items: left; 
     width: 25rem; 
-    height: 55em; 
+    height: 50em; 
     overflow: hidden; 
+    position: relative;
 }
 
 .pizza-img {
@@ -32,7 +46,6 @@
     margin-left: 1em;
     overflow: hidden;
     margin-top: 0;
-    
 }
 
 .pizzaTitleClass {
@@ -42,10 +55,44 @@
     margin-left: 0.6em;
     margin-top: 1em;
     padding: 0;
-    margin-bottom:0;
-    
+    margin-bottom: 0;
 }
 
 .pizzaTypeName {
-color: rgb(143, 143, 143);
+    color: rgb(143, 143, 143);
+}
+
+.pizza-img {
+    width: 100%;
+    height: auto;
+}
+
+.badge {
+    top: 3em;
+    position: relative;
+    display: inline;
+    margin: 5px;
+    padding: 5px 10px;
+    color: white;
+    border-radius: 5px;
+    z-index: 1;
+    height: 2em;
+    text-align: center;
+    justify-content: center;
+}
+
+.badge-new {
+    background-color: green;
+    width: 3em;
+    left: 24em;
+}
+
+.badge-popular {
+    background-color: blue;
+    width: 5em;
+    left: 22em;
+}
+.specialPizza {
+    visibility: hidden;
+
 }

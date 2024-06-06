@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
                 price: 169
             },
             is_new: true,
-            is_popular: true
+            is_popular: false,
         },
         {
             id: 2,
@@ -68,7 +68,8 @@ document.addEventListener("DOMContentLoaded", (event) => {
                 weight: 780,
                 size: 40,
                 price: 179
-            }
+            },
+            is_popular: true
         },
         {
             id: 4,
@@ -170,41 +171,41 @@ document.addEventListener("DOMContentLoaded", (event) => {
         }
     ];
     
-   
-    const pizzaContainer = document.getElementById('pizza-container');
+    const pizzaContainer = document.querySelector('#pizza-container');
 
     pizza_info.forEach(pizza => {
         const pizzaDiv = document.createElement('div');
+        const badgeNewDiv = document.createElement('div');
+        const badgePopularDiv = document.createElement('div');
         pizzaDiv.className = 'pizza';
-        const textContentClass = 'textContent'; 
+        const textContentClass = 'textContent';
         const pizzaHeaderClass = 'pizzaTypeName';
         const pizzaTitleClass = 'pizzaTitleClass';
-        const badgeClass = 'badge';
+    
+        const badgeNew = pizza.is_new ? `<p class="badge badge-new">Нова</p>` : '';
+        const popularBadge = pizza.is_popular ? `<p class="badge badge-popular ${pizza.id == 3 ? 'specialPizza' : ''}">Популярна</p>` : '';
 
+    
         const pizzaContent = `
-            <img src="${pizza.icon}" alt="${pizza.title}" class="pizza-img">
-            <h3 class="${pizzaTitleClass}">${pizza.title}</h3>
-            <section class="${textContentClass}">  
-                <p class="${pizzaHeaderClass}">${pizza.type}</p>
-                <section>
-                    ${pizza.content.meat ? `<p> ${pizza.content.meat.join(', ')}</p>` : ''}
-                    ${pizza.content.chicken ? `<p> ${pizza.content.chicken.join(', ')}</p>` : ''}
-                    ${pizza.content.cheese ? `<p>${pizza.content.cheese.join(', ')}</p>` : ''}
-                    ${pizza.content.pineapple ? `<p> ${pizza.content.pineapple.join(', ')}</p>` : ''}
-                    ${pizza.content.additional ? `<p> ${pizza.content.additional.join(', ')}</p>` : ''}
+            ${badgeNew}
+            ${popularBadge}
+            <div class="pizzaContentAll">
+                <img src="${pizza.icon}" alt="${pizza.title}" class="pizza-img">
+                <h3 class="${pizzaTitleClass}">${pizza.title}</h3>
+                <section class="${textContentClass}">
+                    <p class="${pizzaHeaderClass}">${pizza.type}</p>
+                    <section>
+                        ${pizza.content.meat ? `<p> ${pizza.content.meat.join(', ')}</p>` : ''}
+                        ${pizza.content.chicken ? `<p> ${pizza.content.chicken.join(', ')}</p>` : ''}
+                        ${pizza.content.cheese ? `<p>${pizza.content.cheese.join(', ')}</p>` : ''}
+                        ${pizza.content.pineapple ? `<p> ${pizza.content.pineapple.join(', ')}</p>` : ''}
+                        ${pizza.content.additional ? `<p> ${pizza.content.additional.join(', ')}</p>` : ''}
+                    </section>
                 </section>
-                <section>
-                    ${pizza.small_size ? `<p>Small - Weight: ${pizza.small_size.weight}g, Size: ${pizza.small_size.size}cm, Price: $${pizza.small_size.price}</p>` : ''}
-                    ${pizza.big_size ? `<p>Big - Weight: ${pizza.big_size.weight}g, Size: ${pizza.big_size.size}cm, Price: $${pizza.big_size.price}</p>` : ''}
-                </section>
-                <section>  
-                    ${pizza.is_new ? `<p class="${badgeClass} badge-new">New!</p>` : ''}
-                    ${pizza.is_popular ? `<p class="${badgeClass} badge-popular">Popular!</p>` : ''}
-                </section>
-            </section>
-        `;
-
+            </div>`;
+    
         pizzaDiv.innerHTML = pizzaContent;
         pizzaContainer.appendChild(pizzaDiv);
     });
+    
 });
