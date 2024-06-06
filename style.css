@@ -7,15 +7,18 @@ body {
 
 header {
     background-color: rgba(42, 36, 36, 0.8);
-    
     color: rgb(188, 188, 188);
     padding: 1em;
     margin-right: 0;
     padding-left: 10em;
     padding-top: 10px;
-    position: sticky;
-    z-index: 1; /* Збільшення z-index для хедера */
     position: fixed;
+    box-sizing: border-box;
+    margin-bottom: 2em;
+
+    z-index: 10; /* Збільшення z-index для хедера */
+    
+    width: 100%;
 }
 #days,
 #freeDelivery{
@@ -96,7 +99,7 @@ header p {
   
     margin-left: 1em;
     padding-top: 5em;
-    z-index: 2;
+    z-index: 20;
     position: fixed;
    
    
@@ -210,12 +213,14 @@ header p {
     justify-content: center;
     font-style: bold;
     font-weight: 100;
+    z-index: 1;
 }
 
 .badge-new {
     background-color: rgb(245, 52, 52);
     width: 3em;
     left: 27em;
+    
 
 }
 
@@ -229,12 +234,13 @@ header p {
 .specialPizza {
     visibility: hidden;
 }
-@media only screen and (max-width: 768px) {
+@media  screen and (max-width: 1000px) {
     #PizzaKma {
         height: 6em; /* Adjust height for smaller screens */
-     
     }
+
 }
+
 footer{
     background-image: linear-gradient(rgb(232, 230, 230), rgb(195, 190, 190), rgb(141, 139, 139));
     height: 5em;
