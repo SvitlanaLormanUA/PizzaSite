@@ -170,38 +170,40 @@ document.addEventListener("DOMContentLoaded", (event) => {
         }
     ];
     
-    const textContentId = 'textContent'; 
+   
     const pizzaContainer = document.getElementById('pizza-container');
-    
+
     pizza_info.forEach(pizza => {
         const pizzaDiv = document.createElement('div');
         pizzaDiv.className = 'pizza';
         const textContentClass = 'textContent'; 
+        const pizzaHeaderClass = 'pizzaTypeName';
         const pizzaTitleClass = 'pizzaTitleClass';
-        
-    
+        const badgeClass = 'badge';
+
         const pizzaContent = `
             <img src="${pizza.icon}" alt="${pizza.title}" class="pizza-img">
-            <section class="${textContentClass}">    
             <h3 class="${pizzaTitleClass}">${pizza.title}</h3>
-      
-            <p>${pizza.type}</p>
-            <section>
-                ${pizza.content.meat ? `<p> ${pizza.content.meat.join(', ')}</p>` : ''}
-                ${pizza.content.chicken ? `<p> ${pizza.content.chicken.join(', ')}</p>` : ''}
-                ${pizza.content.cheese ? `<p>${pizza.content.cheese.join(', ')}</p>` : ''}
-                ${pizza.content.pineapple ? `<p> ${pizza.content.pineapple.join(', ')}</p>` : ''}
-                ${pizza.content.additional ? `<p> ${pizza.content.additional.join(', ')}</p>` : ''}
+            <section class="${textContentClass}">  
+                <p class="${pizzaHeaderClass}">${pizza.type}</p>
+                <section>
+                    ${pizza.content.meat ? `<p> ${pizza.content.meat.join(', ')}</p>` : ''}
+                    ${pizza.content.chicken ? `<p> ${pizza.content.chicken.join(', ')}</p>` : ''}
+                    ${pizza.content.cheese ? `<p>${pizza.content.cheese.join(', ')}</p>` : ''}
+                    ${pizza.content.pineapple ? `<p> ${pizza.content.pineapple.join(', ')}</p>` : ''}
+                    ${pizza.content.additional ? `<p> ${pizza.content.additional.join(', ')}</p>` : ''}
+                </section>
+                <section>
+                    ${pizza.small_size ? `<p>Small - Weight: ${pizza.small_size.weight}g, Size: ${pizza.small_size.size}cm, Price: $${pizza.small_size.price}</p>` : ''}
+                    ${pizza.big_size ? `<p>Big - Weight: ${pizza.big_size.weight}g, Size: ${pizza.big_size.size}cm, Price: $${pizza.big_size.price}</p>` : ''}
+                </section>
+                <section>  
+                    ${pizza.is_new ? `<p class="${badgeClass} badge-new">New!</p>` : ''}
+                    ${pizza.is_popular ? `<p class="${badgeClass} badge-popular">Popular!</p>` : ''}
+                </section>
             </section>
-            <section>
-                ${pizza.small_size ? `<p>Small - Weight: ${pizza.small_size.weight}g, Size: ${pizza.small_size.size}cm, Price: $${pizza.small_size.price}</p>` : ''}
-                ${pizza.big_size ? `<p>Big - Weight: ${pizza.big_size.weight}g, Size: ${pizza.big_size.size}cm, Price: $${pizza.big_size.price}</p>` : ''}
-            </section>
-         <section>  
-            ${pizza.is_new ? '<p>New!</p>' : ''}
-            ${pizza.is_popular ? '<p>Popular!</p>' : ''}
         `;
-    
+
         pizzaDiv.innerHTML = pizzaContent;
         pizzaContainer.appendChild(pizzaDiv);
     });

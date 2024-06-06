@@ -1,12 +1,17 @@
+.body {
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 3em;
+}
 .pizza {
     border: 1px solid #ddd;
     margin: 1em;
+    margin-top: 2em;
     border-radius: 0.5em;
     display: flex;
     flex-direction: column;
     align-items: left; 
-    width: 30rem; 
-    height: 60em; 
+    width: 25rem; 
+    height: 55em; 
     overflow: hidden; 
 }
 
@@ -34,5 +39,13 @@
     font-weight: bold;
     font-size: 1.5em; /* Adjusted for better fit */
     color: rgb(255, 132, 0);
+    margin-left: 0.6em;
+    margin-top: 1em;
+    padding: 0;
+    margin-bottom:0;
     
+}
+
+.pizzaTypeName {
+color: rgb(143, 143, 143);
 }
