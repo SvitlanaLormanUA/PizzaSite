@@ -3,25 +3,39 @@ body {
     font-family: 'Arial', Helvetica;
     padding: 0;
     margin: 0;
+    
 }
+    
+
 
 .container{
     display: grid;
     grid-template-columns: 75% 25%;
+    gap:0;
    
 
+}
+.block1{
+   
+    margin-right: 0em;
+
+}
+.block2{
+    display: flex;
+    box-sizing: border-box;
+    background-color: #ddd;
 }
 .pizzaContentAll {
     background-color: rgb(255, 255, 255);
     border: 0.2em solid #ddd;
-    margin: 2em;
+    margin: 1em;
     margin-top: 2em;
     border-radius: 0.5em;
     display: flex;
     flex-direction: column;
     align-items: left; 
-    width: 20em; 
-    height: 50em; 
+    width: 22em; 
+    height: 52em; 
     overflow: hidden; 
     position: relative;
    
@@ -38,7 +52,7 @@ header {
     position: fixed;
     box-sizing: border-box;
     margin-bottom: 2em;
-    width:70%;
+    width:75%;
 
     z-index: 3; /* Збільшення z-index для хедера */
     
@@ -246,40 +260,6 @@ header p {
 #hidButton{
     visibility: hidden;
 }
-@media screen and (max-width: 921px){
-    #PizzaKma {
-        height: 8em; /* Adjust height for smaller screens */
-    }
-}
-@media  screen and (max-width: 800px) {
-    
-    #PizzaKma {
-        height: 8em; /* Adjust height for smaller screens */
-    }
-    #freeDelivery,
-    #days,
-    #pizzaBottom{
-        display: none ;
-    }
-    #phoneNumber{
-        width:10em;
-    }
-    #bottomHeader{
-        display: flex   ;
-        justify-content: end;
-    }
-    .enterButton{
-        visibility: hidden;
-    }
-    #hidButton{
-        visibility: visible;
-    }
-    
-    
-   
-}
-
-
 
 footer{
     background-image: linear-gradient(rgb(232, 230, 230), rgb(195, 190, 190), rgb(141, 139, 139));
@@ -319,25 +299,72 @@ footer{
 }
 .menu{
     text-align: center;
-    padding-top: 12em; /* Same value as margin-top of the menu */
+    padding-top: 14em; /* Same value as margin-top of the menu */
 }
-
-@media  screen and (min-width: 800px) {
-    
-    .menu{
-        padding-top: 12em; /* Same value as margin-top of the menu */
+@media screen and (max-width: 921px){
+    #PizzaKma {
+        height: 8em; /* Adjust height for smaller screens */
     }
+}
+@media  screen and (max-width: 1200px) {
+    
+    #PizzaKma {
+        height: em; /* Adjust height for smaller screens */
+    }
+    #freeDelivery,
+    #days,
+    #pizzaBottom{
+        display: none ;
+    }
+    #phoneNumber{
+        width:10em;
+    }
+    #bottomHeader{
+        display: flex   ;
+        justify-content: end;
+    }
+    .enterButton{
+        visibility: hidden;
+    }
+    #hidButton{
+        visibility: visible;
+    }
+   
    
 }
 
-@media screen and (min-width: 835px) {
+@media screen and (min-width: 500px) and (max-width:1200px) {
+    #PizzaKma {
+        height: 6em; /* Adjust height for smaller screens */
+    }
     .menu{
-        padding-top: 10em; /* Same value as margin-top of the menu */
+       padding-top: 1em;
+       visibility: hidden;
+    }
+    #filters{
+        visibility: hidden;
     }
     #allPizzas {
         font-size: 3em;
      }
-    
+     #freeDelivery,
+     #days,
+     #pizzaBottom{
+         display: none ;
+     }
+}
+@media screen and (min-width: 1000px) {
+    #PizzaKma {
+        height: 8.5em; /* Adjust height for smaller screens */
+    }
+}
+
+@media screen and (min-width: 1000px) and (max-width: 1500px) {
+    .menu{
+        padding-top: 0em;
+        visibility: hidden;
+     }
+     
 }
 #filters {
     display: flex;
@@ -352,7 +379,7 @@ footer{
     cursor: pointer;
 }
 
-.filterItem:nth-of-type(){
+.filterItem:nth-of-type(1){
     padding: 1em;
     background-color: orange;
     color: white;
@@ -370,6 +397,7 @@ footer{
     padding-left: 0;
     color: rgb(32, 29, 29);
     line-height: 2;
+    min-height: 100px;
 }
 .size {
     display: flex;
@@ -387,6 +415,8 @@ footer{
 #price{
     margin-top: 2em;
     font-size: 24px;
+    color:rgb(42, 36, 36);
+    text-shadow: 2px;
 }
 
 .buyButton{

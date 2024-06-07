@@ -91,7 +91,8 @@ document.addEventListener("DOMContentLoaded", (event) => {
                 weight: 790,
                 size: 40,
                 price: 169
-            }
+            },
+            is_popular: true
         },
         {
             id: 17,
@@ -184,7 +185,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
         const ingredientsClass = 'ingredientsClass';
 
         const badgeNew = pizza.is_new ? `<p class="badge badge-new">Нова</p>` : '';
-        const popularBadge = pizza.is_popular ? `<p class="badge badge-popular ${pizza.id == 3 ? 'specialPizza' : ''}">Популярна</p>` : '';
+        const popularBadge = pizza.is_popular ? `<p class="badge badge-popular ${pizza.id >= 3 ? 'specialPizza' : ''}">Популярна</p>` : '';
 
         const smallSize = pizza.small_size ? `
             <div  id="smallSize">  
@@ -201,7 +202,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
                 <p> <img src="images/size-icon.svg" class="imgSize"/>${pizza.big_size.size}</p>
                 <p> <img src="images/weight.svg" class="imgWeight"/>${pizza.big_size.weight}</p>
                 <p id="price">${pizza.big_size.price} </p>
-                <button class="buyButton"> ${buyText}</button>
+                <button class="buyButton buyButton2"> ${buyText}</button>
             </div>` : '';
 
        // Helper function to capitalize the first letter of the first word
