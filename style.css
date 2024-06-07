@@ -59,7 +59,7 @@ header {
     gap: 1em;
 }
 
-#enterButton {
+.enterButton {
     background-image: linear-gradient(rgb(235, 185, 105), rgb(241, 149, 0));
     font-weight: bold;
     color: white;
@@ -150,7 +150,7 @@ header p {
     flex-direction: column;
     align-items: left; 
     width: 30em; 
-    height: 65em; 
+    height: 55em; 
     overflow: hidden; 
     position: relative;
    
@@ -236,11 +236,38 @@ header p {
 .specialPizza {
     visibility: hidden;
 }
+#bottomHeader{
+    display: flex;
+    justify-content: space-between;
+}
+#hidButton{
+    visibility: hidden;
+}
 @media  screen and (max-width: 800px) {
     
     #PizzaKma {
         height: 6em; /* Adjust height for smaller screens */
     }
+    #freeDelivery,
+    #days,
+    #pizzaBottom{
+        display: none ;
+    }
+    #phoneNumber{
+        width:10em;
+    }
+    #bottomHeader{
+        display: flex   ;
+        justify-content: end;
+    }
+    .enterButton{
+        visibility: hidden;
+    }
+    #hidButton{
+        visibility: visible;
+    }
+    
+    
    
 }
 
