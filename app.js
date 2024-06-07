@@ -181,49 +181,63 @@ document.addEventListener("DOMContentLoaded", (event) => {
         const pizzaTitleClass = 'pizzaTitleClass';
         const buyText ='Купити';
 
+        const ingredientsClass = 'ingredientsClass';
+
         const badgeNew = pizza.is_new ? `<p class="badge badge-new">Нова</p>` : '';
         const popularBadge = pizza.is_popular ? `<p class="badge badge-popular ${pizza.id == 3 ? 'specialPizza' : ''}">Популярна</p>` : '';
 
         const smallSize = pizza.small_size ? `
-            <div  id="#smallSize">
-                <p>Small Size:</p>
-                <p> ${pizza.small_size.weight}g</p>
-                <p> ${pizza.small_size.size}cm</p>
-                <p> ${pizza.small_size.price} UAH</p>
+            <div  id="#smallSize">  
+               <p> <img/>${pizza.small_size.size}</p>
+                <p> <img/>${pizza.small_size.weight}</p>
+                <p> ${pizza.small_size.price} </p>
                 <button> ${buyText} </button>
             </div>` : '';
 
         const bigSize = pizza.big_size ? `
             <div id="bigSize">
-                <p>Big Size:</p>
-                <p>W ${pizza.big_size.weight}g</p>
-                <p>${pizza.big_size.size}cm</p>
-                <p>${pizza.big_size.price} UAH</p>
+                <p>${pizza.big_size.size}</p>
+                <p> ${pizza.big_size.weight}</p>
+                <p>${pizza.big_size.price} </p>
                 <button> ${buyText}</button>
             </div>` : '';
 
-        const pizzaContent = `
-            ${badgeNew}
-            ${popularBadge}
-            <div class="pizzaContentAll">
-                <img src="${pizza.icon}" alt="${pizza.title}" class="pizza-img">
-                <h3 class="${pizzaTitleClass}">${pizza.title}</h3>
-                <section class="${textContentClass}">
-                    <p class="${pizzaHeaderClass}">${pizza.type}</p>
-                    <section>
-                        ${pizza.content.meat ? `<p> ${pizza.content.meat.join(', ')}</p>` : ''}
-                        ${pizza.content.chicken ? `<p> ${pizza.content.chicken.join(', ')}</p>` : ''}
-                        ${pizza.content.cheese ? `<p>${pizza.content.cheese.join(', ')}</p>` : ''}
-                        ${pizza.content.pineapple ? `<p> ${pizza.content.pineapple.join(', ')}</p>` : ''}
-                        ${pizza.content.additional ? `<p> ${pizza.content.additional.join(', ')}</p>` : ''}
-                    </section>
+       // Helper function to capitalize the first letter of the first word
+function capitalizeFirstWord(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
 
-                    <section class="size">
-                    ${smallSize}
-                    ${bigSize}
-                    </section>
-                </section>
-            </div>`;
+// Combine ingredients into a single string
+const combinedIngredients = [
+    ...pizza.content.meat || [],
+    ...pizza.content.chicken || [],
+    ...pizza.content.cheese || [],
+    ...pizza.content.pineapple || [],
+    ...pizza.content.additional || []
+].join(', ');
+
+
+const formattedIngredients = capitalizeFirstWord(combinedIngredients);
+
+const pizzaContent = `
+    ${badgeNew}
+    ${popularBadge}
+    <div class="pizzaContentAll">
+        <img src="${pizza.icon}" alt="${pizza.title}" class="pizza-img">
+        <h3 class="${pizzaTitleClass}">${pizza.title}</h3>
+        <section class="${textContentClass}">
+            <p class="${pizzaHeaderClass}">${pizza.type}</p>
+            <section class="${ingredientsClass}">
+                ${formattedIngredients}
+            </section>
+
+            <section class="size">
+                ${smallSize}
+                ${bigSize}
+            </section>
+        </section>
+    </div>`;
+
 
         pizzaDiv.innerHTML = pizzaContent;
         pizzaContainer.appendChild(pizzaDiv);
