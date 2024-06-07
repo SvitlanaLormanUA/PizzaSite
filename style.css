@@ -5,6 +5,29 @@ body {
     margin: 0;
 }
 
+.container{
+    display: grid;
+    grid-template-columns: 75% 25%;
+   
+
+}
+.pizzaContentAll {
+    background-color: rgb(255, 255, 255);
+    border: 0.2em solid #ddd;
+    margin: 2em;
+    margin-top: 2em;
+    border-radius: 0.5em;
+    display: flex;
+    flex-direction: column;
+    align-items: left; 
+    width: 20em; 
+    height: 50em; 
+    overflow: hidden; 
+    position: relative;
+   
+
+}
+
 header {
     background-color: rgba(42, 36, 36, 0.8);
     color: rgb(188, 188, 188);
@@ -15,10 +38,11 @@ header {
     position: fixed;
     box-sizing: border-box;
     margin-bottom: 2em;
+    width:70%;
 
     z-index: 3; /* Збільшення z-index для хедера */
     
-    width: 100%;
+  
 }
 #days,
 #freeDelivery{
@@ -26,12 +50,7 @@ header {
     margin-top: 1.4em;
 }
 
-.header-section {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-}
+
 
 #headerBadge {
     display: flex;
@@ -59,7 +78,8 @@ header {
     gap: 1em;
 }
 
-.enterButton {
+.enterButton,
+.buyButton {
     background-image: linear-gradient(rgb(235, 185, 105), rgb(241, 149, 0));
     font-weight: bold;
     color: white;
@@ -74,7 +94,8 @@ header {
     transition: background-image 0.3s ease;
     
 }
-#enterButton:hover {
+.enterButton:hover,
+.buyButton:hover {
     font-weight: bold;
     background-image: linear-gradient(rgb(252, 197, 107), rgb(250, 187, 87));
     cursor: pointer;
@@ -140,25 +161,6 @@ header p {
 }
 
 
-.pizzaContentAll {
-    background-color: rgb(255, 255, 255);
-    border: 0.2em solid #ddd;
-    margin: 2em;
-    margin-top: 2em;
-    border-radius: 0.5em;
-    display: flex;
-    flex-direction: column;
-    align-items: left; 
-    width: 30em; 
-    height: 55em; 
-    overflow: hidden; 
-    position: relative;
-   
-
-}
-.textContent {
-    padding-bottom: 1em;
-}
 .pizza-img {
     max-width: 100%;
     height: auto;
@@ -177,6 +179,7 @@ header p {
     margin-left: 1em;
     overflow: hidden;
     margin-top: 0;
+    padding-bottom: 1em;
 }
 
 .pizzaTitleClass {
@@ -221,7 +224,7 @@ header p {
     background-color: rgb(245, 52, 52);
     height: 4em;
     width: 3em;
-    left: 29em;
+    left: 20em;
     
 
 }
@@ -229,7 +232,7 @@ header p {
 .badge-popular {
     background-color: rgb(26, 181, 26);
     width: 5em;
-    left: 27em;
+    left: 18em;
     font-style: bold;
 }
 
@@ -243,10 +246,15 @@ header p {
 #hidButton{
     visibility: hidden;
 }
+@media screen and (max-width: 921px){
+    #PizzaKma {
+        height: 8em; /* Adjust height for smaller screens */
+    }
+}
 @media  screen and (max-width: 800px) {
     
     #PizzaKma {
-        height: 6em; /* Adjust height for smaller screens */
+        height: 8em; /* Adjust height for smaller screens */
     }
     #freeDelivery,
     #days,
@@ -365,7 +373,7 @@ footer{
 }
 .size {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     box-sizing:content-box;
     padding-left: 5em;
     padding-right: 5em;
@@ -374,4 +382,13 @@ footer{
 .imgSize,
 .imgWeight{
     margin-right: 0.4em;
+}
+
+#price{
+    margin-top: 2em;
+    font-size: 24px;
+}
+
+.buyButton{
+    margin-right: 1em;
 }

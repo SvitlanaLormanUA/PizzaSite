@@ -187,19 +187,21 @@ document.addEventListener("DOMContentLoaded", (event) => {
         const popularBadge = pizza.is_popular ? `<p class="badge badge-popular ${pizza.id == 3 ? 'specialPizza' : ''}">Популярна</p>` : '';
 
         const smallSize = pizza.small_size ? `
-            <div  id="#smallSize">  
+            <div  id="smallSize">  
                <p> <img src="images/size-icon.svg" class="imgSize"/>${pizza.small_size.size}</p>
                 <p> <img src="images/weight.svg" class="imgWeight"/>${pizza.small_size.weight}</p>
-                <p> ${pizza.small_size.price} </p>
-                <button> ${buyText} </button>
+                <p id="price"> ${pizza.small_size.price} </p>
+                <button class="buyButton"> ${buyText} </button>
+             
             </div>` : '';
 
         const bigSize = pizza.big_size ? `
             <div id="bigSize">
+          
                 <p> <img src="images/size-icon.svg" class="imgSize"/>${pizza.big_size.size}</p>
                 <p> <img src="images/weight.svg" class="imgWeight"/>${pizza.big_size.weight}</p>
-                <p>${pizza.big_size.price} </p>
-                <button> ${buyText}</button>
+                <p id="price">${pizza.big_size.price} </p>
+                <button class="buyButton"> ${buyText}</button>
             </div>` : '';
 
        // Helper function to capitalize the first letter of the first word
