@@ -188,16 +188,16 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
         const smallSize = pizza.small_size ? `
             <div  id="#smallSize">  
-               <p> <img/>${pizza.small_size.size}</p>
-                <p> <img/>${pizza.small_size.weight}</p>
+               <p> <img src="images/size-icon.svg" class="imgSize"/>${pizza.small_size.size}</p>
+                <p> <img src="images/weight.svg" class="imgWeight"/>${pizza.small_size.weight}</p>
                 <p> ${pizza.small_size.price} </p>
                 <button> ${buyText} </button>
             </div>` : '';
 
         const bigSize = pizza.big_size ? `
             <div id="bigSize">
-                <p>${pizza.big_size.size}</p>
-                <p> ${pizza.big_size.weight}</p>
+                <p> <img src="images/size-icon.svg" class="imgSize"/>${pizza.big_size.size}</p>
+                <p> <img src="images/weight.svg" class="imgWeight"/>${pizza.big_size.weight}</p>
                 <p>${pizza.big_size.price} </p>
                 <button> ${buyText}</button>
             </div>` : '';

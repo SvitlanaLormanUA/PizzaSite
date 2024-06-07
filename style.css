@@ -370,3 +370,8 @@ footer{
     padding-left: 5em;
     padding-right: 5em;
 }
+
+.imgSize,
+.imgWeight{
+    margin-right: 0.4em;
+}
