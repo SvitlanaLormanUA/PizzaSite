@@ -4,16 +4,15 @@ body {
     padding: 0;
     margin: 0;
     overflow: auto;
-    
+
 }
     
 
 
 .container{
     display: grid;
-    grid-template-columns: 80% 20%;
-    gap:0;
-
+    grid-template-columns: 65% 45%;
+ 
 }
 .specialPizza{
     visibility: hidden;
@@ -21,9 +20,9 @@ body {
 /*------------------------------Block1----------------------------------*/
 .block1{
     margin-right: 0em;
- 
     position: relative;
     border: 1px solid #ddd;
+    
 
 }
 
@@ -33,13 +32,11 @@ body {
     margin: 1em;
     margin-top: 2em;
     border-radius: 0.5em;
- 
-    
     display: flex;
     flex-direction: column;
     align-items: left; 
-    width: 22em; 
-    height: 52em; 
+    width: 20em; 
+    height: 50em; 
     overflow: hidden; 
     position: relative;
    
@@ -56,12 +53,54 @@ header {
     position: fixed;
     box-sizing: border-box;
     margin-bottom: 2em;
-    width:75%;
+    width:65%;
 
     z-index: 3; /* Збільшення z-index для хедера */
     
   
 }
+
+.badge {
+    top: 3em;
+   
+    position:relative;
+    display: inline;
+    margin: 5px;
+
+    padding: 5px 10px;
+    color: white;
+    border-radius: 5px;
+    z-index: 100;
+    height: 2em;
+    text-align: center;
+    justify-content: center;
+    font-style: bold;
+    font-weight: 100;
+    z-index: 1;
+}
+
+.badge-new {
+    font-size: 18px;
+    background-color: rgb(245, 52, 52);
+    height: 4em;
+    width: 2em;
+    left:16em;
+    position: relative;
+   
+    
+
+}
+
+.badge-popular {
+    font-size: 18px;
+    background-color: rgb(26, 181, 26);
+    width: 5em;
+    left: 13.5em;
+
+    font-style: bold;
+   
+}
+
 #days,
 #freeDelivery{
     font-size: 0.8em;
@@ -144,50 +183,44 @@ header p {
    
 }
 
-.triangle1 {
+.triangle1, .triangle2, .triangle3, .triangle4 {
     width: 0;
     height: 0;
-    border-left: 102.5px solid transparent;
-    border-right: 0px solid transparent;
-    bottom:-1em; 
-    border-top: 20px solid orange;
-    position: absolute; 
-    left: 0; 
+    position: absolute;
 }
 
+.triangle1 {
+    border-left: 102.5px solid transparent;
+    border-right: 0px solid transparent;
+    bottom: -1em;
+    border-top: 20px solid orange;
+    left: 0;
+}
 
 .triangle2 {
-    width: 0;
-    height: 0;
-    border-right: 102.5px solid transparent; 
+    border-right: 102.5px solid transparent;
     border-left: 0px solid transparent;
     bottom: -1em;
     border-top: 20px solid orange;
-    position: absolute; 
-    right: 0; 
+    right: 0;
 }
 
 .triangle3 {
-    width: 0;
-    height: 0;
     border-left: 102.5px solid transparent;
     border-right: 0px solid transparent;
-    top: -1em; 
+    top: -1em;
     border-bottom: 20px solid orange;
-    position: absolute; 
-    left: 0; 
+    left: 0;
 }
 
 .triangle4 {
-    width: 0;
-    height: 0;
-    border-right: 102.5px solid transparent; 
+    border-right: 102.5px solid transparent;
     border-left: 0px solid transparent;
     top: -1em;
     border-bottom: 20px solid orange;
-    position: absolute; 
-    right: 0; 
+    right: 0;
 }
+
 
 #PizzaKma:hover {
     border-left:2px  orange;
@@ -240,41 +273,6 @@ header p {
 .pizza-img {
     width: 100%;
     height: auto;
-}
-
-.badge {
-    top: 3em;
-   
-    position:relative;
-    display: inline;
-    margin: 5px;
-
-    padding: 5px 10px;
-    color: white;
-    border-radius: 5px;
-    z-index: 100;
-    height: 2em;
-    text-align: center;
-    justify-content: center;
-    font-style: bold;
-    font-weight: 100;
-    z-index: 1;
-}
-
-.badge-new {
-    background-color: rgb(245, 52, 52);
-    height: 4em;
-    width: 3em;
-    left: 20em;
-    
-
-}
-
-.badge-popular {
-    background-color: rgb(26, 181, 26);
-    width: 5em;
-    left: 18em;
-    font-style: bold;
 }
 
 .specialPizza {
@@ -333,71 +331,7 @@ footer{
     text-align: center;
     padding-top: 14em; /* Same value as margin-top of the menu */
 }
-@media screen and (max-width: 921px){
-    #PizzaKma {
-        height: 8em; /* Adjust height for smaller screens */
-    }
-}
-@media  screen and (max-width: 1200px) {
-    
-    #PizzaKma {
-        height: em; /* Adjust height for smaller screens */
-    }
-    #freeDelivery,
-    #days,
-    #pizzaBottom{
-        display: none ;
-    }
-    #phoneNumber{
-        width:10em;
-    }
-    #bottomHeader{
-        display: flex   ;
-        justify-content: end;
-    }
-    .enterButton{
-        visibility: hidden;
-    }
-    #hidButton{
-        visibility: visible;
-    }
-   
-   
-}
 
-@media screen and (min-width: 500px) and (max-width:1079px) {
-    #PizzaKma {
-        height: 6em; /* Adjust height for smaller screens */
-    }
-    .menu{
-       padding-top: 1em;
-       visibility: hidden;
-    }
-    #filters{
-        visibility: hidden;
-    }
-    #allPizzas {
-        font-size: 3em;
-     }
-     #freeDelivery,
-     #days,
-     #pizzaBottom{
-         display: none ;
-     }
-}
-@media screen and (min-width: 1000px) {
-    #PizzaKma {
-        height: 8.5em; /* Adjust height for smaller screens */
-    }
-}
-
-@media screen and (min-width: 1000px) and (max-width: 1500px) {
-    .menu{
-        padding-top: 0em;
-        visibility: hidden;
-     }
-     
-}
 #filters {
     display: flex;
     justify-content:center;
@@ -492,14 +426,131 @@ footer{
     box-sizing: border-box;
     background-color: #ffffff;
     padding: 1em;
-    z-index: 1;
+    right: 0;
+    bottom:0;
+  
 }
-#orderedLabel{
+#boughtPanel{
+    position: fixed;
+}
+.ordered{
+    display: flex;
+    justify-content: space-between;
+    gap: 3em;
+   
+  
+}
+#ordersLabel{
+    display: inline-flex;
+    align-items: center;
     font-style: bold;
-    font-size: 1.5em;
+    font-size: 1.6em;
     color: rgb(51, 25, 0);
+}
+#clearLabel{
+    font-size: 0.8em;
+    color: #c2c0c0;
+    position: fixed;
     display: inline-flex;
     justify-content: center;
     align-items: center;
+    align-self: flex-end;
+    right:1em;
+    top: 1.8em;
+}
+
+/*-----Media-------*/
+@media screen and (max-width: 921px){
+    #PizzaKma {
+        height: 8em; /* Adjust height for smaller screens */
+    }
+}
+@media  screen and (max-width: 1200px) {
+    
+    #PizzaKma {
+        height: em; /* Adjust height for smaller screens */
+    }
+    #freeDelivery,
+    #days,
+    #pizzaBottom{
+        display: none ;
+    }
+    #phoneNumber{
+        width:10em;
+    }
+    #bottomHeader{
+        display: flex   ;
+        justify-content: end;
+    }
+    .enterButton{
+        visibility: hidden;
+    }
+    #hidButton{
+        visibility: visible;
+    }
+   
+   
+}
+
+@media screen and (min-width: 500px) and (max-width:1079px) {
+    #PizzaKma {
+        height: 6em; /* Adjust height for smaller screens */
+    }
+    .menu{
+       padding-top: 1em;
+       visibility: hidden;
+    }
+    #filters{
+        visibility: hidden;
+    }
+    #allPizzas {
+        font-size: 3em;
+     }
+     #freeDelivery,
+     #days,
+     #pizzaBottom{
+         display: none ;
+     }
+}
+@media screen and (min-width: 1000px) {
+    #PizzaKma {
+        height: 8.5em; /* Adjust height for smaller screens */
+    }
+}
+
+@media screen and (min-width: 1000px) and (max-width: 1500px) {
+    .menu{
+        padding-top: 0em;
+        visibility: hidden;
+     }
+     
+}
+
+@media screen  and (max-width: 1091px) {
+    .container{
+        display: grid;
+        grid-template-columns: 56% 44%;
+    }
+    header{
+        width:56%;
+    }
+    .pizzaContentAll{
+        width:18em;
+    }
+    .badge-new{
+        left: 14em;
+    }
+    .badge-popular{
+        left: 11.6em;
+    }
+    #clearLabel{
+        font-size: 0.6em;
+        right:0.3em;
+    }
+    #ordersLabel
+    {
+        font-size: 1em;
+    }
+
     
 }
