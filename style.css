@@ -554,3 +554,12 @@ footer{
 
     
 }
+
+.pizzaCart{
+    display: flex;
+    height: 5em;
+}
+.imgCart{
+    height:auto;
+    max-width: 100px;
+}

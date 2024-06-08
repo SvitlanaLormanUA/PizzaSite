@@ -172,6 +172,10 @@ document.addEventListener("DOMContentLoaded", (event) => {
         }
     ];
     const pizzaContainer = document.querySelector('#pizza-container');
+    const orderedPizzasContainer = document.querySelector('.orderedPizzas');
+
+   
+   
 
     pizza_info.forEach(pizza => {
         const pizzaDiv = document.createElement('div');
@@ -241,6 +245,7 @@ const pizzaContent = `
         </section>
     </div>`;
 
+    
 
         pizzaDiv.innerHTML = pizzaContent;
         pizzaContainer.appendChild(pizzaDiv);
