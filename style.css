@@ -431,7 +431,7 @@ footer{
     padding-left: 0em;
     right: 0;
     bottom:0;
-    box-shadow: -2px 2px -2px grey;
+    box-shadow: -8px 0 12px rgba(0, 0, 0, 0.1);
   
 }
 #boughtPanel{
@@ -451,7 +451,7 @@ footer{
     font-style: bold;
     font-size: 1.6em;
     color: rgb(51, 25, 0);
-    padding-left: 1em;
+    padding-left: 0.5em;
     padding-right: 1em;
 }
 #clearLabel{
@@ -462,7 +462,8 @@ footer{
     justify-content: center;
     align-items: center;
     align-self: flex-end;
-    right:1em;
+    margin-right:1em;
+    right: 1em;
     top: 1.8em;
 }
 
@@ -557,6 +558,8 @@ footer{
     }
     #ordersLabel
     {
+      
+        padding-left: 1em;
         font-size: 1em;
     }
 
