@@ -451,8 +451,9 @@ footer{
     font-style: bold;
     font-size: 1.6em;
     color: rgb(51, 25, 0);
-    padding-left: 0.5em;
+    padding-left: 0.em;
     padding-right: 1em;
+
 }
 #clearLabel{
     font-size: 0.8em;
@@ -466,6 +467,7 @@ footer{
     right: 1em;
     top: 1.8em;
 }
+
 
 /*-----Media-------*/
 @media screen and (max-width: 921px){
