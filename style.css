@@ -297,11 +297,13 @@ footer{
     padding: 5em;
     padding-left: 8em;
     margin:0;
-    z-index: 0;
-    position: relative;
     width: 100%;
+    height: auto;
+    position: relative;
+    box-sizing:border-box;
 
 }
+
 
 #allPizzas {
   font-style: bold;
@@ -426,8 +428,10 @@ footer{
     box-sizing: border-box;
     background-color: #ffffff;
     padding: 1em;
+    padding-left: 0em;
     right: 0;
     bottom:0;
+    box-shadow: -2px 2px -2px grey;
   
 }
 #boughtPanel{
@@ -437,6 +441,7 @@ footer{
     display: flex;
     justify-content: space-between;
     gap: 3em;
+    margin-bottom: 2em;
    
   
 }
@@ -446,6 +451,8 @@ footer{
     font-style: bold;
     font-size: 1.6em;
     color: rgb(51, 25, 0);
+    padding-left: 1em;
+    padding-right: 1em;
 }
 #clearLabel{
     font-size: 0.8em;
@@ -468,7 +475,7 @@ footer{
 @media  screen and (max-width: 1200px) {
     
     #PizzaKma {
-        height: em; /* Adjust height for smaller screens */
+        height: 8em; /* Adjust height for smaller screens */
     }
     #freeDelivery,
     #days,
@@ -504,7 +511,7 @@ footer{
         visibility: hidden;
     }
     #allPizzas {
-        font-size: 3em;
+        font-size: 4em;
      }
      #freeDelivery,
      #days,
@@ -531,9 +538,10 @@ footer{
         display: grid;
         grid-template-columns: 56% 44%;
     }
-    header{
+    header {
         width:56%;
     }
+   
     .pizzaContentAll{
         width:18em;
     }
@@ -557,9 +565,31 @@ footer{
 
 .pizzaCart{
     display: flex;
-    height: 5em;
+    width: 500%;
+   background-color: #F5F5F5;
+   padding-top: 1em;
+   border-bottom: 1px solid lightgray;
+   padding: 1em;
 }
-.imgCart{
+.imgPizzaCart{
     height:auto;
-    max-width: 100px;
+    max-width: 10em;
+    position: fixed;
+    right:-5em;
+   
+  
+}
+.orderedPizzas{
+
+}
+.sizeAndWeight{
+    display: flex;
+    gap:1.5em;
+}
+.sizeCart,
+.weightCart{
+    display: flex;
+    position: relative;
+    justify-content: start;
+    left:0;
 }
