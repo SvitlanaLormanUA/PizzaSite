@@ -157,6 +157,9 @@ header {
     background-image: linear-gradient(rgb(252, 197, 107), rgb(250, 187, 87));
     cursor: pointer;
 }
+.buyButton{
+    margin-right: 2em;
+}
 #phoneNumber{
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
 }
