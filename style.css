@@ -287,7 +287,7 @@ header p {
 }
 
 footer{
-    background-image: linear-gradient(rgb(232, 230, 230), rgb(195, 190, 190), rgb(141, 139, 139));
+    background-image: linear-gradient(rgb(232, 230, 230), rgb(212, 209, 209), rgb(141, 139, 139));
     height: 5em;
     display: flex;
     justify-content: center;
@@ -301,6 +301,10 @@ footer{
     height: auto;
     position: relative;
     box-sizing:border-box;
+    padding: 2em;
+    text-align: center;
+    font-size: 0.9em;
+    line-height: 3em;
 
 }
 
@@ -426,13 +430,19 @@ footer{
 .block2{
     display: flex;
     box-sizing: border-box;
-    background-color: #ffffff;
+    background-color: #F5F5F5;
+ 
     padding: 1em;
     padding-left: 0em;
+    padding-top:0em ;
     right: 0;
     bottom:0;
     box-shadow: -8px 0 12px rgba(0, 0, 0, 0.1);
   
+}
+.orderedPizzas{
+    background-color: #F5F5F5 ;
+    height: 100%;
 }
 #boughtPanel{
     position: fixed;
@@ -441,7 +451,14 @@ footer{
     display: flex;
     justify-content: space-between;
     gap: 3em;
-    margin-bottom: 2em;
+    margin-bottom: 1em;
+   
+    padding-top: 0.5em;
+    padding-right: 10em;
+    padding-bottom: 1.5em;
+    background-color:white;
+    width: 150%;
+    height: 100%;
    
   
 }
@@ -451,8 +468,10 @@ footer{
     font-style: bold;
     font-size: 1.6em;
     color: rgb(51, 25, 0);
-    padding-left: 0.em;
+    padding-left: 0.5em;
     padding-right: 1em;
+    padding-top: 1em;;
+   
 
 }
 #clearLabel{
@@ -464,8 +483,10 @@ footer{
     align-items: center;
     align-self: flex-end;
     margin-right:1em;
+    padding-top: 0.8em;
     right: 1em;
     top: 1.8em;
+   
 }
 
 
@@ -570,21 +591,28 @@ footer{
 
 .pizzaCart{
     display: flex;
-    width: 500%;
+    
+   width: 500%;
+   height: 500%;
    background-color: #F5F5F5;
-   padding-top: 1em;
+
    border-bottom: 1px solid lightgray;
-   padding: 1em;
+   padding: 0.5em;
 }
 .imgPizzaCart{
     height:auto;
     max-width: 10em;
     position: fixed;
-    right:-5em;
+    right:-7em;  
+    z-index: 0;
    
-  
+    
 }
-.orderedPizzas{
+.info{
+    margin: 0.5em;
+    margin-right:0;
+    padding-bottom: 0.9em;
+    padding-top: 0.9em;
 
 }
 .sizeAndWeight{
@@ -597,4 +625,157 @@ footer{
     position: relative;
     justify-content: start;
     left:0;
+    margin-top: 0.2em;
+}
+.functionalPanel,
+.buttonsAmount {
+    display: flex;
+    justify-content: space-between;
+    gap: 1em;
+    margin-bottom: 0.3em;
+    margin-right: 4em;
+   
+    width: 100px;
+}
+.plusAndMinus{
+    display: flex;
+    justify-content: space-between;
+    gap: 0.5em;
+}
+.delete,
+.amount,
+.sum {
+  
+   margin-top: 0.5em;
+}
+.amount{
+    margin-right: 0.1em;
+}
+.plus,
+.minus,
+.delete {
+    border-radius: 3em;
+    width: 1.5em;
+    height: 1.5em;
+    border: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.03em;
+    margin-top:0.2em;
+    
+}
+.plus,
+.minus{
+    color: white;
+}
+.delete{
+    color: orange;
+    background-image: linear-gradient(rgb(248, 248, 248), rgb(214, 214, 214));
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    border: 0.5px solid rgb(30, 0, 0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+.delete:active {
+    background-image: linear-gradient(rgba(248, 248, 248, 0.85), rgbq(214, 214, 214, 0.85));
+}
+.delete:hover {
+    background-image: linear-gradient(rgba(248, 248, 248, 0.797), rgba(214, 214, 214, 0.797));
+    color: rgb(251, 179, 44);
+}
+.minus {
+    background-color: red;
+    cursor: pointer;
+}
+.minus:active{
+    background-color: hsla(0, 94%, 60%, 0.85);
+}
+.minus:hover{
+    background-color: hsla(0, 94%, 60%, 0.75);
+}
+.plus {
+    background-color: hsla(126, 98%, 41%, 1);
+    cursor: pointer;
+}
+
+.plus:hover{
+    background-color: hsla(126, 98%, 41%, 0.7);
+}
+.plus:active{
+    background-color: hsla(126, 98%, 41%, 0.8);
+}
+.pizzaCart label {
+    color: orange;
+    font-size: 16px;
+    font-weight: 200;
+}
+.orderText{
+    position: fixed;
+ 
+}
+
+.panelForOrdering{
+    position: fixed;
+    justify-content: center;
+    align-items: center;
+    bottom: 8em;
+    display: block;
+    
+
+}
+.orderText{
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 1em;
+        padding-top: 2em;
+        padding-left: 1em;
+        background-color:white;
+        width: 200%;
+        height: 100%;  
+       
+    }
+    #sumUAH{
+        font-weight: bold;
+        font-size: 1.1em;
+        color: rgb(51, 25, 0);
+        padding-right: 1em;
+        position: fixed;
+        right:0;
+    
+    }
+   #buttOrder{
+    width: 35%;
+    padding: 2em;
+   }
+#orderButton{
+   position: fixed;
+   bottom: 0;
+   width: 30%;
+   margin: 0;
+   margin-bottom: 2em;
+   margin-top: 2em;
+   margin-left: 3em;
+   margin-right: 0.5em;
+   border: 0.5px solid rgb(255, 132, 0);
+
+}
+@media (max-width: 1152px) {
+    footer p {
+        font-size: 0.8em;
+        text-align: justify;
+    
+    }
+    footer{
+        padding-left: 10em;
+    }
+}
+
+
+footer p {
+    margin: 0;
+    line-height: 1.5;
 }
