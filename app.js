@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
     let pizza_info = [
         {
             id: 1,
+
             icon: 'images/pizza_7.jpg',
             title: "Імпреза",
             type: 'М’ясна піца',
@@ -172,6 +173,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
         }
     ];
 
+
     const pizzaContainer = document.querySelector('#pizza-container');
     const orderedPizzasContainer = document.querySelector('.orderedPizzas');
    
@@ -248,70 +250,87 @@ document.addEventListener("DOMContentLoaded", (event) => {
             localStorage.setItem('orderedPizzas', JSON.stringify([]));
         }
     }
+   
 
     function renderOrderedPizzas() {
         const orderedPizzas = JSON.parse(localStorage.getItem('orderedPizzas'));
+    
         orderedPizzasContainer.innerHTML = ''; // Clear the container before re-rendering
-        
-
+    
         orderedPizzas.forEach(pizza => {
             const orderedPizza = document.createElement('div');
             orderedPizza.className = 'pizzaCart';
             orderedPizza.innerHTML = `
-             <div class="info">  
-                <label for="pizaCart"> ${pizza.title} </label>
-
-                 <div class="sizeAndWeight">
-                      <div class="sizeCart">
-                        <img class="imgSize" src="images/size-icon.svg"/>
-                        <p class="sizeNumber"> ${pizza.size} </p>
-                      </div>
-
-
-                      <div class="weightCart">
-                        <img class="imgSize" src="images/weight.svg"/>
-                        <p class="sizeNumber">${pizza.weight}</p>
-                      </div>
-                   </div>    
-        
-                   <div class="functionalPanel">
-                <div class="sum"><b>${pizza.price}</b></div>
-                <div class="buttonsAmount">
-                    <div class="plusAndMinus">
-                            <div class="minus">-</div>
-                            <div class="amount">4</div>
-                            <div class="plus">+</div>
+                <div class="info">  
+                    <label for="pizaCart">${pizza.title}</label>
+    
+                    <div class="sizeAndWeight">
+                        <div class="sizeCart">
+                            <img class="imgSize" src="images/size-icon.svg"/>
+                            <p class="sizeNumber">${pizza.size}</p>
                         </div>
+                        <div class="weightCart">
+                            <img class="imgSize" src="images/weight.svg"/>
+                            <p class="sizeNumber">${pizza.weight}</p>
+                        </div>
+                    </div>    
+            
+                    <div class="functionalPanel">
+                        <div class="sum"><b>${pizza.price}</b></div>
+                        <div class="buttonsAmount">
+                            <div class="plusAndMinus">
+                                <div class="minus">-</div>
+                                <div class="amount">${pizza.amount}</div>
+                                <div class="plus">+</div>
+                            </div>
                             <div class="delete"><b>x</b></div>
                         </div>
-                     </div>
+                    </div>
                 </div>
+    
 
-                    <div class="imgCart">
-                  <img src="${pizza.icon}" alt="${pizza.title}" class="imgPizzaCart">
-               </div>
-             </div>
-
-               
-             </div>   
-            
-                
-                
+                <div class="imgCart">
+                    <img src="${pizza.icon}" alt="${pizza.title}" class="imgPizzaCart">
+                </div>
             `;
-
+    
             orderedPizzasContainer.appendChild(orderedPizza);
-
-            document.querySelector('#clearLabel').addEventListener('click', () => {
-                deleteAllOrderedPizzas(pizza.title);
+          
+    
+            const plusButton = orderedPizza.querySelector('.plus');
+            const minusButton = orderedPizza.querySelector('.minus');
+            const amountDisplay = orderedPizza.querySelector('.amount');
+    
+            plusButton.addEventListener('click', () => {
+                pizza.amount++;
+                amountDisplay.textContent = pizza.amount;
+                updateLocalStorage(orderedPizzas);
             });
+    
+            minusButton.addEventListener('click', () => {
+                if (pizza.amount > 1) {
+                    pizza.amount--;
+                    amountDisplay.textContent = pizza.amount;
+                    updateLocalStorage(orderedPizzas);
+                } else if (pizza.amount == 1) {
+                    deleteOnePizza(pizza.title);
+                }
+            });
+    
             document.querySelector('.delete').addEventListener('click', (event) => {
                 const pizzaTitle = event.target.closest('.pizzaCart').querySelector('label').innerText;
                 deleteOnePizza(pizzaTitle);
-               renderOrderedPizzas();
-              
+                renderOrderedPizzas();
             });
         });
     }
+    
+    function updateLocalStorage(orderedPizzas) {
+        localStorage.setItem('orderedPizzas', JSON.stringify(orderedPizzas));
+    }
+    
+    renderOrderedPizzas();
+    
 
     function deleteOnePizza(pizzaTitle) {
         let orderedPizzas = JSON.parse(localStorage.getItem('orderedPizzas'));
@@ -342,7 +361,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
    
     
 
-
+   
     
     document.querySelectorAll('.buyButton').forEach(button => {
         button.addEventListener('click', (event) => {
@@ -352,21 +371,28 @@ document.addEventListener("DOMContentLoaded", (event) => {
             const weight = event.target.previousElementSibling.previousElementSibling.innerText;
             const price = event.target.previousElementSibling.innerText;
             const icon = pizzaCard.querySelector('img').src;
-
-            const newPizza = {
-                title: pizzaTitle,
-                weight,
-                size,
-                price,
-                icon
-            };
-
             const orderedPizzas = JSON.parse(localStorage.getItem('orderedPizzas'));
-            orderedPizzas.push(newPizza);
+    
+            let existingPizza = orderedPizzas.find(pizza => pizza.title === pizzaTitle && pizza.size === size);
+            if (existingPizza) {
+                existingPizza.amount++; // Increment the amount if pizza already exists
+            } else {
+                existingPizza = {
+                    title: pizzaTitle,
+                    weight,
+                    size,
+                    price,
+                    icon,
+                    amount: 1 // Set initial amount to 1 for new pizzas
+                };
+                orderedPizzas.push(existingPizza);
+            }
+    
             localStorage.setItem('orderedPizzas', JSON.stringify(orderedPizzas));
             renderOrderedPizzas();
         });
     });
+    
 
   
 });

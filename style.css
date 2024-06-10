@@ -436,6 +436,7 @@ footer{
 }
 
 
+
 /*------------------------------Block2----------------------------------*/
 .block2{
     display: flex;
@@ -450,6 +451,7 @@ footer{
     box-shadow: -8px 0 12px rgba(0, 0, 0, 0.1);
   
 }
+
 .orderedPizzas{
     background-color: #F5F5F5 ;
     height: 100%;
