@@ -333,6 +333,8 @@ document.addEventListener("DOMContentLoaded", (event) => {
                 const minusButton = orderedPizza.querySelector('.minus');
                 const amountDisplay = orderedPizza.querySelector('.amount');
     
+                
+
                 plusButton.addEventListener('click', () => {
                     pizza.amount++;
                     amountDisplay.textContent = pizza.amount;
@@ -344,7 +346,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
                     if (pizza.amount > 1) {
                         pizza.amount--;
                         amountDisplay.textContent = pizza.amount;
-                        updateLocalStorage(orderedPizzas);
+                       // updateLocalStorage(orderedPizzas);
                         updateTotalSum();
                     } else if (pizza.amount === 1) {
                         deleteOnePizza(pizza.title);
@@ -354,6 +356,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
                 orderedPizza.querySelector('.delete').addEventListener('click', (event) => {
                     const pizzaTitle = event.target.closest('.pizzaCart').querySelector('label').innerText;
                     deleteOnePizza(pizzaTitle);
+                    //updateLocalStorage(JSON.parse(localStorage.getItem('orderedPizzas')));
                     renderOrderedPizzas();
                 });
             });
@@ -366,7 +369,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
                     <div id="textSum">Сума замовлення</div>
                     <div id="sumUAH"> ${totalSum} грн</div>
                 </div>
-                <button id="orderButton" class="buyButton"><a href="charts.html" id="chartsHtml">Замовити</a></button>
+                <a href="charts.html" id="chartsHtml"><button id="orderButton" class="buyButton">Замовити</button></a>
             `;
             orderedPizzasContainer.appendChild(panelForOrdering);
             updateTotalSum();
@@ -398,45 +401,53 @@ document.addEventListener("DOMContentLoaded", (event) => {
     
         function deleteAllOrderedPizzas() {
             localStorage.setItem('orderedPizzas', JSON.stringify([]));
+        //   updateLocalStorage([]);
             renderOrderedPizzas();
         }
     
         setUpLocalStorage();
         renderOrderedPizzas();
-    document.querySelectorAll('.buyButton').forEach(button => {
-        button.addEventListener('click', (event) => {
-            const pizzaCard = event.target.closest('.pizza');
-            const pizzaTitle = pizzaCard.querySelector(`.${pizzaTitleClass}`).innerText;
-            const size = event.target.closest('div').id === 'smallSize' ? 30 : 40;
-            const weight = event.target.previousElementSibling.previousElementSibling.innerText;
-            const price = parseInt(event.target.previousElementSibling.innerText, 10);
-            const icon = pizzaCard.querySelector('img').src;
-            const orderedPizzas = JSON.parse(localStorage.getItem('orderedPizzas'));
+    
+        document.querySelectorAll('.buyButton').forEach(button => {
+            button.addEventListener('click', (event) => {
+                const pizzaCard = event.target.closest('.pizza');
+                const pizzaTitle = pizzaCard.querySelector(`.${pizzaTitleClass}`).innerText;
+                const type = pizzaCard.querySelector(`.pizzaTypeName`).innerText;
+                const size = event.target.closest('div').id === 'smallSize' ? 30 : 40;
+                const weight = event.target.previousElementSibling.previousElementSibling.innerText;
+                const price = parseInt(event.target.previousElementSibling.innerText, 10);
+                const icon = pizzaCard.querySelector('img').src;
+                const orderedPizzas = JSON.parse(localStorage.getItem('orderedPizzas'));
 
-            let existingPizza = orderedPizzas.find(pizza => pizza.title === pizzaTitle && pizza.size === size);
-            if (existingPizza) {
-                existingPizza.amount++;
-            } else {
-                existingPizza = {
-                    title: pizzaTitle,
-                    weight,
-                    size,
-                    price,
-                    icon,
-                    amount: 1
-                };
-                orderedPizzas.push(existingPizza);
-            }
-
-            updateLocalStorage(orderedPizzas);
-            renderOrderedPizzas();
+    
+                let existingPizza = orderedPizzas.find(pizza => pizza.title === pizzaTitle && pizza.size === size);
+                if (existingPizza) {
+                    existingPizza.amount++;
+                } else {
+                    existingPizza = {
+                        title: pizzaTitle,
+                        weight,
+                        size,
+                        price,
+                        icon,
+                        type: type,
+                        amount: 1
+                    };
+                    orderedPizzas.push(existingPizza);
+                }
+    
+                updateLocalStorage(orderedPizzas);
+                renderOrderedPizzas();
+            });
         });
-    });
     
         document.getElementById('clearLabel').addEventListener('click', () => {
             deleteAllOrderedPizzas();
             totalSum = 0;
             document.getElementById('sumUAH').textContent = `${totalSum} грн`;
+        });
+        document.querySelector('#orderButton').addEventListener('click', () => {
+            updateLocalStorage(JSON.parse(localStorage.getItem('orderedPizzas')));
         });
     });
     

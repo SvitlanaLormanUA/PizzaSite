@@ -3,20 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styleCharts.css">
+
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-   
     <script type="text/javascript">
         
+
         google.charts.load('current', {'packages':['corechart']});
 
 // Set a callback to run when the Google Visualization API is loaded.
 google.charts.setOnLoadCallback(drawChart);
-
+google.charts.setOnLoadCallback(drawSecChart);
 function drawChart() {
-    var orderedPizzas = JSON.parse(localStorage.getItem('orderedPizzas'));
+    let orderedPizzas = JSON.parse(localStorage.getItem('orderedPizzas'));
 
     // Create a new DataTable and add columns
-    var data = new google.visualization.DataTable();
+    let data = new google.visualization.DataTable();
     data.addColumn('string', 'Title');
     data.addColumn('number', 'Amount');
 
@@ -25,26 +27,72 @@ function drawChart() {
         data.addRow([pizza.title, pizza.amount]);
     });
 
+
     // Set chart options
-    var options = {
-        'title': 'Pizza chart',
+    let options = {
+        'title': 'Pizza Title Chart',
         'width': 400,
         'height': 300
     };
 
     // Instantiate and draw the chart
-    var chart = new google.visualization.PieChart(document.querySelector('.chart_div'));
+    let chart = new google.visualization.PieChart(document.querySelector('.chart_div'));
+    chart.draw(data, options);
+
+}
+function drawSecChart(){
+    let orderedPizzas = JSON.parse(localStorage.getItem('orderedPizzas'));
+
+    // Create a new DataTable and add columns
+    let data = new google.visualization.DataTable();
+    data.addColumn('string', 'Title');
+    data.addColumn('number', 'Amount');
+
+    // Loop through orderedPizzas and update existing rows or add new rows
+    orderedPizzas.forEach(function(pizza) {
+        let existingRowIndex = -1;
+
+        // Check if pizza.type already exists in the data table
+        for (let i = 0; i < data.getNumberOfRows(); i++) {
+            if (data.getValue(i, 0) === pizza.type) {
+                existingRowIndex = i;
+                break;
+            }
+        }
+
+        if (existingRowIndex !== -1) {
+            // If pizza.type exists, update the amount in the existing row
+            let currentAmount = data.getValue(existingRowIndex, 1);
+            data.setValue(existingRowIndex, 1, currentAmount + pizza.amount);
+        } else {
+            // If pizza.type doesn't exist, add a new row with type and amount
+            data.addRow([pizza.type, pizza.amount]);
+        }
+    });
+
+    // Set chart options
+    let options = {
+        'title': 'Pizza Product Chart',
+        'width': 400,
+        'height': 300
+    };
+
+    // Instantiate and draw the chart
+    let chart = new google.visualization.PieChart(document.querySelector('.second_ch'));
     chart.draw(data, options);
 }
+
+
+
     </script>
     <title>Сharts</title>
 </head>
 <body>
-    <h1>Графіки по піцам, які обрав користувач</h1>
-
-    <div class="chart_div">
-
-    </div>
+    <section>
+       <h1>Графіки по піцам, які обрав користувач</h1>
+       <section class="chart_div"></section>
+       <section class="second_ch"></section>
+     </section>
   
 </body>
 </html>
