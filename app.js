@@ -403,36 +403,35 @@ document.addEventListener("DOMContentLoaded", (event) => {
     
         setUpLocalStorage();
         renderOrderedPizzas();
-    
-        document.querySelectorAll('.buyButton').forEach(button => {
-            button.addEventListener('click', (event) => {
-                const pizzaCard = event.target.closest('.pizza');
-                const pizzaTitle = pizzaCard.querySelector(`.${pizzaTitleClass}`).innerText;
-                const size = event.target.closest('div').id === 'smallSize' ? 30 : 40;
-                const weight = event.target.previousElementSibling.previousElementSibling.innerText;
-                const price = parseInt(event.target.previousElementSibling.innerText, 10);
-                const icon = pizzaCard.querySelector('img').src;
-                const orderedPizzas = JSON.parse(localStorage.getItem('orderedPizzas'));
-    
-                let existingPizza = orderedPizzas.find(pizza => pizza.title === pizzaTitle && pizza.size === size);
-                if (existingPizza) {
-                    existingPizza.amount++;
-                } else {
-                    existingPizza = {
-                        title: pizzaTitle,
-                        weight,
-                        size,
-                        price,
-                        icon,
-                        amount: 1
-                    };
-                    orderedPizzas.push(existingPizza);
-                }
-    
-                updateLocalStorage(orderedPizzas);
-                renderOrderedPizzas();
-            });
+    document.querySelectorAll('.buyButton').forEach(button => {
+        button.addEventListener('click', (event) => {
+            const pizzaCard = event.target.closest('.pizza');
+            const pizzaTitle = pizzaCard.querySelector(`.${pizzaTitleClass}`).innerText;
+            const size = event.target.closest('div').id === 'smallSize' ? 30 : 40;
+            const weight = event.target.previousElementSibling.previousElementSibling.innerText;
+            const price = parseInt(event.target.previousElementSibling.innerText, 10);
+            const icon = pizzaCard.querySelector('img').src;
+            const orderedPizzas = JSON.parse(localStorage.getItem('orderedPizzas'));
+
+            let existingPizza = orderedPizzas.find(pizza => pizza.title === pizzaTitle && pizza.size === size);
+            if (existingPizza) {
+                existingPizza.amount++;
+            } else {
+                existingPizza = {
+                    title: pizzaTitle,
+                    weight,
+                    size,
+                    price,
+                    icon,
+                    amount: 1
+                };
+                orderedPizzas.push(existingPizza);
+            }
+
+            updateLocalStorage(orderedPizzas);
+            renderOrderedPizzas();
         });
+    });
     
         document.getElementById('clearLabel').addEventListener('click', () => {
             deleteAllOrderedPizzas();
