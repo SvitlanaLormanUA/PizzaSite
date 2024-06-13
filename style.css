@@ -357,12 +357,14 @@ footer{
     color: white;
     border-radius: 0.3em;
 }*/
-.filterItem:hover{
+.filterItem:hover, .filterItem.active {
     padding: 1em;
     background-color: orange;
     color: white;
     border-radius: 0.3em;
 }
+
+
 .ingredientsClass {
     margin-right: 1em;
     padding: 1em;

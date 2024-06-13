@@ -182,6 +182,12 @@ document.addEventListener("DOMContentLoaded", (event) => {
         const ingredientsClass = 'ingredientsClass';
         let totalSum = 0;
     
+        
+       
+        
+      
+        
+        
         pizza_info.forEach(pizza => {
             const pizzaDiv = document.createElement('div');
             pizzaDiv.className = 'pizza';
@@ -241,7 +247,43 @@ document.addEventListener("DOMContentLoaded", (event) => {
             pizzaDiv.innerHTML = pizzaContent;
             pizzaContainer.appendChild(pizzaDiv);
         });
+        document.querySelectorAll('.filterItem').forEach(filter => {
+            filter.addEventListener('click', () => {
+                document.querySelectorAll('.filterItem').forEach(filter => filter.classList.remove('active'));
+                filter.classList.add('active');
+                
+                const filterValue = filter.innerText.toLowerCase();
+                filterPizzas(filterValue);
+            });
+        });
     
+        function filterPizzas(filterValue) {
+            const pizzas = document.querySelectorAll('.pizza');
+            pizzas.forEach(pizza => {
+                const pizzaType = pizza.querySelector(`.${pizzaHeaderClass}`).innerText.toLowerCase();
+                const ingredients = pizza.querySelector(`.${ingredientsClass}`).innerText.toLowerCase();
+                const filterMap = {
+                    'усі': 'усі',
+                    'мʼясні': 'м’ясна піца',
+                    'з ананасами': 'ананаси',
+                    'з морепродуктами': 'морська піца',
+                    'вега': 'вега піца'
+                };
+    
+                const filterCategory = filterMap[filterValue] || filterValue;
+    
+                if (filterCategory === 'усі' || pizzaType.includes(filterCategory) || ingredients.includes(filterCategory)) {
+                    pizza.style.display = 'block';
+                } else {
+                    pizza.style.display = 'none';
+                }
+            });
+        }
+    
+        
+        
+        
+        
         function setUpLocalStorage() {
             if (!localStorage.getItem('orderedPizzas')) {
                 localStorage.setItem('orderedPizzas', JSON.stringify([]));
