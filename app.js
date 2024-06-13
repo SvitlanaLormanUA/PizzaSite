@@ -173,227 +173,229 @@ document.addEventListener("DOMContentLoaded", (event) => {
         }
     ];
 
-
-    const pizzaContainer = document.querySelector('#pizza-container');
-    const orderedPizzasContainer = document.querySelector('.orderedPizzas');
-
-    const textContentClass = 'textContent';
-    const pizzaHeaderClass = 'pizzaTypeName';
-    const pizzaTitleClass = 'pizzaTitleClass';
-    const buyText = 'Купити';
-    const ingredientsClass = 'ingredientsClass';
-
-    pizza_info.forEach(pizza => {
-        const pizzaDiv = document.createElement('div');
-        pizzaDiv.className = 'pizza';
-
-        const badgeNew = pizza.is_new ? `<p class="badge badge-new">Нова</p>` : '';
-        const popularBadge = pizza.is_popular ? `<p class="badge badge-popular ${pizza.id >= 3 ? 'specialPizza' : ''}">Популярна</p>` : '';
-
-        const smallSize = pizza.small_size ? `
-            <div id="smallSize">  
-                <p><img src="images/size-icon.svg" class="imgSize"/>${pizza.small_size.size}</p>
-                <p><img src="images/weight.svg" class="imgWeight"/>${pizza.small_size.weight}</p>
-                <p id="price">${pizza.small_size.price}</p>
-                <button class="buyButton"> ${buyText} </button>
-            </div>` : '';
-
-        const bigSize = pizza.big_size ? `
-            <div id="bigSize">
-                <p><img src="images/size-icon.svg" class="imgSize"/>${pizza.big_size.size}</p>
-                <p><img src="images/weight.svg" class="imgWeight"/>${pizza.big_size.weight}</p>
-                <p id="price">${pizza.big_size.price}</p>
-                <button class="buyButton buyButton2"> ${buyText}</button>
-            </div>` : '';
-
-        // Helper function to capitalize the first letter of the first word
-        function capitalizeFirstWord(string) {
-            return string.charAt(0).toUpperCase() + string.slice(1);
-        }
-
-        // Combine ingredients into a single string
-        const combinedIngredients = [
-            ...pizza.content.meat || [],
-            ...pizza.content.chicken || [],
-            ...pizza.content.cheese || [],
-            ...pizza.content.pineapple || [],
-            ...pizza.content.additional || []
-        ].join(', ');
-
-        const formattedIngredients = capitalizeFirstWord(combinedIngredients);
-
-        const pizzaContent = `
-            ${badgeNew}
-            ${popularBadge}
-            <div class="pizzaContentAll">
-                <img src="${pizza.icon}" alt="${pizza.title}" class="pizza-img">
-                <h3 class="${pizzaTitleClass}">${pizza.title}</h3>
-                <section class="${textContentClass}">
-                    <p class="${pizzaHeaderClass}">${pizza.type}</p>
-                    <section class="${ingredientsClass}">
-                        ${formattedIngredients}
-                    </section>
-
-                    <section class="size">
-                        ${smallSize}
-                        ${bigSize}
-                    </section>
-                </section>
-            </div>`;
-
-        pizzaDiv.innerHTML = pizzaContent;
-        pizzaContainer.appendChild(pizzaDiv);
-    });
-
-    function setUpLocalStorage() {
-        if (!localStorage.getItem('orderedPizzas')) {
-            localStorage.setItem('orderedPizzas', JSON.stringify([]));
-        }
-    }
-
-    function renderOrderedPizzas() {
-        const orderedPizzas = JSON.parse(localStorage.getItem('orderedPizzas'));
+        const pizzaContainer = document.querySelector('#pizza-container');
+        const orderedPizzasContainer = document.querySelector('.orderedPizzas');
+        const textContentClass = 'textContent';
+        const pizzaHeaderClass = 'pizzaTypeName';
+        const pizzaTitleClass = 'pizzaTitleClass';
+        const buyText = 'Купити';
+        const ingredientsClass = 'ingredientsClass';
+        let totalSum = 0;
     
-        orderedPizzasContainer.innerHTML = ''; // Clear the container before re-rendering
+        pizza_info.forEach(pizza => {
+            const pizzaDiv = document.createElement('div');
+            pizzaDiv.className = 'pizza';
     
-        orderedPizzas.forEach(pizza => {
-            const orderedPizza = document.createElement('div');
-            orderedPizza.className = 'pizzaCart';
-            orderedPizza.innerHTML = `
-                <div class="info">  
-                    <label for="pizaCart">${pizza.title}</label>
+            const badgeNew = pizza.is_new ? `<p class="badge badge-new">Нова</p>` : '';
+            const popularBadge = pizza.is_popular ? `<p class="badge badge-popular ${pizza.id >= 3 ? 'specialPizza' : ''}">Популярна</p>` : '';
     
-                    <div class="sizeAndWeight">
-                        <div class="sizeCart">
-                            <img class="imgSize" src="images/size-icon.svg"/>
-                            <p class="sizeNumber">${pizza.size}</p>
-                        </div>
-                        <div class="weightCart">
-                            <img class="imgSize" src="images/weight.svg"/>
-                            <p class="sizeNumber">${pizza.weight}</p>
-                        </div>
-                    </div>    
-            
-                    <div class="functionalPanel">
-                        <div class="sum"><b>${pizza.price}</b></div>
-                        <div class="buttonsAmount">
-                            <div class="plusAndMinus">
-                                <div class="minus">-</div>
-                                <div class="amount">${pizza.amount}</div>
-                                <div class="plus">+</div>
-                            </div>
-                            <div class="delete"><b>x</b></div>
-                        </div>
-                    </div>
-                </div>
+            const smallSize = pizza.small_size ? `
+                <div id="smallSize">  
+                    <p><img src="images/size-icon.svg" class="imgSize"/>${pizza.small_size.size}</p>
+                    <p><img src="images/weight.svg" class="imgWeight"/>${pizza.small_size.weight}</p>
+                    <p id="price">${pizza.small_size.price}</p>
+                    <button class="buyButton"> ${buyText} </button>
+                </div>` : '';
     
-                <div class="imgCart">
-                    <img src="${pizza.icon}" alt="${pizza.title}" class="imgPizzaCart">
-                </div>
-            `;
+            const bigSize = pizza.big_size ? `
+                <div id="bigSize">
+                    <p><img src="images/size-icon.svg" class="imgSize"/>${pizza.big_size.size}</p>
+                    <p><img src="images/weight.svg" class="imgWeight"/>${pizza.big_size.weight}</p>
+                    <p id="price">${pizza.big_size.price}</p>
+                    <button class="buyButton buyButton2"> ${buyText}</button>
+                </div>` : '';
     
-            orderedPizzasContainer.appendChild(orderedPizza);
-    
-            const plusButton = orderedPizza.querySelector('.plus');
-            const minusButton = orderedPizza.querySelector('.minus');
-            const amountDisplay = orderedPizza.querySelector('.amount');
-    
-            plusButton.addEventListener('click', () => {
-                pizza.amount++;
-                amountDisplay.textContent = pizza.amount;
-                updateLocalStorage(orderedPizzas);
-            });
-    
-            minusButton.addEventListener('click', () => {
-                if (pizza.amount > 1) {
-                    pizza.amount--;
-                    amountDisplay.textContent = pizza.amount;
-                    updateLocalStorage(orderedPizzas);
-                } else if (pizza.amount == 1) {
-                    deleteOnePizza(pizza.title);
-                }
-            });
-    
-            orderedPizza.querySelector('.delete').addEventListener('click', (event) => {
-                const pizzaTitle = event.target.closest('.pizzaCart').querySelector('label').innerText;
-                deleteOnePizza(pizzaTitle);
-                renderOrderedPizzas();
-            });
-            
-        });
-
-        // Add panel for ordering
-        const panelForOrdering = document.createElement('section');
-        panelForOrdering.className = 'panelForOrdering';
-        panelForOrdering.innerHTML = `
-            <div class="orderText">
-                <div id="textSum">Сума замовлення</div>
-                <div id="sumUAH">924грн</div>
-            </div>
-            <button id="orderButton" class="buyButton">Замовити</button>
-        `;
-        orderedPizzasContainer.appendChild(panelForOrdering);
-    }
-    
-    function updateLocalStorage(orderedPizzas) {
-        localStorage.setItem('orderedPizzas', JSON.stringify(orderedPizzas));
-    }
-    
-    function deleteOnePizza(pizzaTitle) {
-        let orderedPizzas = JSON.parse(localStorage.getItem('orderedPizzas'));
-    
-        const pizzaToDelete = orderedPizzas.find(pizza => pizza.title === pizzaTitle);
-    
-        if (pizzaToDelete) {
-            const pizzaIndex = orderedPizzas.indexOf(pizzaToDelete);
-            orderedPizzas.splice(pizzaIndex, 1);
-            localStorage.setItem('orderedPizzas', JSON.stringify(orderedPizzas));
-
-            renderOrderedPizzas();
-        } else {
-            console.log('Pizza not found in ordered pizzas.');
-        }
-    }
-    
-    function deleteAllOrderedPizzas() {
-        localStorage.setItem('orderedPizzas', JSON.stringify([]));
-        renderOrderedPizzas();
-    }
-
-   
-    setUpLocalStorage();
-    renderOrderedPizzas();
-    
-    document.querySelectorAll('.buyButton').forEach(button => {
-        button.addEventListener('click', (event) => {
-            const pizzaCard = event.target.closest('.pizza');
-            const pizzaTitle = pizzaCard.querySelector(`.${pizzaTitleClass}`).innerText;
-            const size = event.target.closest('div').id === 'smallSize' ? 30 : 40;
-            const weight = event.target.previousElementSibling.previousElementSibling.innerText;
-            const price = event.target.previousElementSibling.innerText;
-            const icon = pizzaCard.querySelector('img').src;
-            const orderedPizzas = JSON.parse(localStorage.getItem('orderedPizzas'));
-    
-            let existingPizza = orderedPizzas.find(pizza => pizza.title === pizzaTitle && pizza.size === size);
-            if (existingPizza) {
-                existingPizza.amount++; // Increment the amount if pizza already exists
-            } else {
-                existingPizza = {
-                    title: pizzaTitle,
-                    weight,
-                    size,
-                    price,
-                    icon,
-                    amount: 1 // Set initial amount to 1 for new pizzas
-                };
-                orderedPizzas.push(existingPizza);
+            function capitalizeFirstWord(string) {
+                return string.charAt(0).toUpperCase() + string.slice(1);
             }
     
+            const combinedIngredients = [
+                ...pizza.content.meat || [],
+                ...pizza.content.chicken || [],
+                ...pizza.content.cheese || [],
+                ...pizza.content.pineapple || [],
+                ...pizza.content.additional || []
+            ].join(', ');
+    
+            const formattedIngredients = capitalizeFirstWord(combinedIngredients);
+    
+            const pizzaContent = `
+                ${badgeNew}
+                ${popularBadge}
+                <div class="pizzaContentAll">
+                    <img src="${pizza.icon}" alt="${pizza.title}" class="pizza-img">
+                    <h3 class="${pizzaTitleClass}">${pizza.title}</h3>
+                    <section class="${textContentClass}">
+                        <p class="${pizzaHeaderClass}">${pizza.type}</p>
+                        <section class="${ingredientsClass}">
+                            ${formattedIngredients}
+                        </section>
+    
+                        <section class="size">
+                            ${smallSize}
+                            ${bigSize}
+                        </section>
+                    </section>
+                </div>`;
+    
+            pizzaDiv.innerHTML = pizzaContent;
+            pizzaContainer.appendChild(pizzaDiv);
+        });
+    
+        function setUpLocalStorage() {
+            if (!localStorage.getItem('orderedPizzas')) {
+                localStorage.setItem('orderedPizzas', JSON.stringify([]));
+            }
+        }
+    
+        function renderOrderedPizzas() {
+            const orderedPizzas = JSON.parse(localStorage.getItem('orderedPizzas'));
+            orderedPizzasContainer.innerHTML = ''; // Clear the container before re-rendering
+    
+            orderedPizzas.forEach(pizza => {
+                const orderedPizza = document.createElement('div');
+                orderedPizza.className = 'pizzaCart';
+                orderedPizza.innerHTML = `
+                    <div class="info">  
+                        <label for="pizaCart">${pizza.title}</label>
+                        <div class="sizeAndWeight">
+                            <div class="sizeCart">
+                                <img class="imgSize" src="images/size-icon.svg"/>
+                                <p class="sizeNumber">${pizza.size}</p>
+                            </div>
+                            <div class="weightCart">
+                                <img class="imgSize" src="images/weight.svg"/>
+                                <p class="sizeNumber">${pizza.weight}</p>
+                            </div>
+                        </div>    
+                        <div class="functionalPanel">
+                            <div class="sum"><b>${pizza.price}</b></div>
+                            <div class="buttonsAmount">
+                                <div class="plusAndMinus">
+                                    <div class="minus">-</div>
+                                    <div class="amount">${pizza.amount}</div>
+                                    <div class="plus">+</div>
+                                </div>
+                                <div class="delete"><b>x</b></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="imgCart">
+                        <img src="${pizza.icon}" alt="${pizza.title}" class="imgPizzaCart">
+                    </div>
+                `;
+    
+                orderedPizzasContainer.appendChild(orderedPizza);
+    
+                const plusButton = orderedPizza.querySelector('.plus');
+                const minusButton = orderedPizza.querySelector('.minus');
+                const amountDisplay = orderedPizza.querySelector('.amount');
+    
+                plusButton.addEventListener('click', () => {
+                    pizza.amount++;
+                    amountDisplay.textContent = pizza.amount;
+                    updateLocalStorage(orderedPizzas);
+                    updateTotalSum();
+                });
+    
+                minusButton.addEventListener('click', () => {
+                    if (pizza.amount > 1) {
+                        pizza.amount--;
+                        amountDisplay.textContent = pizza.amount;
+                        updateLocalStorage(orderedPizzas);
+                        updateTotalSum();
+                    } else if (pizza.amount === 1) {
+                        deleteOnePizza(pizza.title);
+                    }
+                });
+    
+                orderedPizza.querySelector('.delete').addEventListener('click', (event) => {
+                    const pizzaTitle = event.target.closest('.pizzaCart').querySelector('label').innerText;
+                    deleteOnePizza(pizzaTitle);
+                    renderOrderedPizzas();
+                });
+            });
+    
+            // Add panel for ordering
+            const panelForOrdering = document.createElement('section');
+            panelForOrdering.className = 'panelForOrdering';
+            panelForOrdering.innerHTML = `
+                <div class="orderText">
+                    <div id="textSum">Сума замовлення</div>
+                    <div id="sumUAH"> ${totalSum} грн</div>
+                </div>
+                <button id="orderButton" class="buyButton">Замовити</button>
+            `;
+            orderedPizzasContainer.appendChild(panelForOrdering);
+            updateTotalSum();
+        }
+    
+        function updateTotalSum() {
+            const orderedPizzas = JSON.parse(localStorage.getItem('orderedPizzas'));
+            totalSum = orderedPizzas.reduce((sum, pizza) => sum + (pizza.price * pizza.amount), 0);
+            document.getElementById('sumUAH').textContent = `${totalSum} грн`;
+        }
+    
+        function updateLocalStorage(orderedPizzas) {
             localStorage.setItem('orderedPizzas', JSON.stringify(orderedPizzas));
+        }
+    
+        function deleteOnePizza(pizzaTitle) {
+            let orderedPizzas = JSON.parse(localStorage.getItem('orderedPizzas'));
+            const pizzaToDelete = orderedPizzas.find(pizza => pizza.title === pizzaTitle);
+    
+            if (pizzaToDelete) {
+                const pizzaIndex = orderedPizzas.indexOf(pizzaToDelete);
+                orderedPizzas.splice(pizzaIndex, 1);
+                updateLocalStorage(orderedPizzas);
+                renderOrderedPizzas();
+            } else {
+                console.log('Pizza not found in ordered pizzas.');
+            }
+        }
+    
+        function deleteAllOrderedPizzas() {
+            localStorage.setItem('orderedPizzas', JSON.stringify([]));
             renderOrderedPizzas();
+        }
+    
+        setUpLocalStorage();
+        renderOrderedPizzas();
+    
+        document.querySelectorAll('.buyButton').forEach(button => {
+            button.addEventListener('click', (event) => {
+                const pizzaCard = event.target.closest('.pizza');
+                const pizzaTitle = pizzaCard.querySelector(`.${pizzaTitleClass}`).innerText;
+                const size = event.target.closest('div').id === 'smallSize' ? 30 : 40;
+                const weight = event.target.previousElementSibling.previousElementSibling.innerText;
+                const price = parseInt(event.target.previousElementSibling.innerText, 10);
+                const icon = pizzaCard.querySelector('img').src;
+                const orderedPizzas = JSON.parse(localStorage.getItem('orderedPizzas'));
+    
+                let existingPizza = orderedPizzas.find(pizza => pizza.title === pizzaTitle && pizza.size === size);
+                if (existingPizza) {
+                    existingPizza.amount++;
+                } else {
+                    existingPizza = {
+                        title: pizzaTitle,
+                        weight,
+                        size,
+                        price,
+                        icon,
+                        amount: 1
+                    };
+                    orderedPizzas.push(existingPizza);
+                }
+    
+                updateLocalStorage(orderedPizzas);
+                renderOrderedPizzas();
+            });
+        });
+    
+        document.getElementById('clearLabel').addEventListener('click', () => {
+            deleteAllOrderedPizzas();
+            totalSum = 0;
+            document.getElementById('sumUAH').textContent = `${totalSum} грн`;
         });
     });
-    document.getElementById('clearLabel').addEventListener('click', () => {
-        deleteAllOrderedPizzas();
-    });
-});
+    
