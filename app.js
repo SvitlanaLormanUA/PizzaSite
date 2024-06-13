@@ -251,7 +251,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
             filter.addEventListener('click', () => {
                 document.querySelectorAll('.filterItem').forEach(filter => filter.classList.remove('active'));
                 filter.classList.add('active');
-                
+
                 const filterValue = filter.innerText.toLowerCase();
                 filterPizzas(filterValue);
             });
@@ -366,7 +366,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
                     <div id="textSum">Сума замовлення</div>
                     <div id="sumUAH"> ${totalSum} грн</div>
                 </div>
-                <button id="orderButton" class="buyButton">Замовити</button>
+                <button id="orderButton" class="buyButton"><a href="charts.html" id="chartsHtml">Замовити</a></button>
             `;
             orderedPizzasContainer.appendChild(panelForOrdering);
             updateTotalSum();
