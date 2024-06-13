@@ -2,4 +2,6 @@ body{
     display: flex;
     justify-content: center;
   
+    background-color: rgb(254, 249, 244);
+    font-family: 'Arial', Helvetica;
 }
