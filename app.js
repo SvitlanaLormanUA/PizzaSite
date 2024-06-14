@@ -346,7 +346,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
                     if (pizza.amount > 1) {
                         pizza.amount--;
                         amountDisplay.textContent = pizza.amount;
-                       // updateLocalStorage(orderedPizzas);
+                       updateLocalStorage(orderedPizzas);
                         updateTotalSum();
                     } else if (pizza.amount === 1) {
                         deleteOnePizza(pizza.title);
